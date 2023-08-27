@@ -1,5 +1,6 @@
 package edu.co.ue.second.controller;
 
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,4 +50,11 @@ public class CourseController {
 	public List<Course> postCourse(@RequestBody Course c){
 		return course.postCourse(c);
 	}
+	
+	@PutMapping(value = "courses/{name}", consumes = MediaType.APPLICATION_XML_VALUE , produces=MediaType.APPLICATION_XML_VALUE)
+    public List<Course> putCourse(@PathVariable("name") String name, @RequestBody Course cursoUpdate) {
+    
+
+        return course.putCourse(name, cursoUpdate.getName(), cursoUpdate.getDuration(), cursoUpdate.getCost(), cursoUpdate.getAbility()); 
+    }
 }
